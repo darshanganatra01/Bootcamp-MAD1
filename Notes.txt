@@ -1,0 +1,127 @@
+HTTP methods
+
+
+GET---when we are seeking some resource form the server (Getting the resource)
+
+POST--- when i want to send a resource to the server (make a post to the server)
+
+PUT --- to update a resource
+
+DELETE --- delete a resource
+
+
+
+GET/POST/PUT/DELETE ----- Server ----- status code and response
+
+200 ---- OK/success
+201 ---- resource eg. u are signing up for spotify 
+email and password
+save in the database
+
+404 Not found 
+
+
+render_template ---- render_template is a function using which we can render html templates 
+to the server (i can send html pages to the user form the server)
+
+Templates folder --- in order to give html pages as a response all the pages should be in
+the templates folder
+
+
+
+models 
+
+database 
+sql-alchemy 
+pythonic way helps us talk to the database
+
+
+Object relational mapping
+
+
+we will have to let sqlalchemy know that this is how my database looks 
+
+
+
+
+
+we are now making a database for my app
+we will design more of the database 
+now we will define how the user looks 
+
+
+user
+
+
+database table ---- primary key
+
+1. user
+
+---- id -----> Integer,primary key,autoincriment      1,Darshan,12345
+---- username ----> String,nullable=False             2,Suraj,23456
+---- password ----> String,nullable=False
+
+2. roles
+
+---- rid -----> Integer,primary,autoincriment          1,User,Basic user
+---- role_name ----> String,nullable=False             2,Admin,Admin of app
+---- description ----> String
+
+3. user_roles
+
+---- relid--->Integer,primary,autoincriment                  rid,uid,rid
+---- uid---> Integer,foreignkey,nullable=False,unique         1,1,1
+---- rid---> Integer,foreignkey,nullable=False,unique         2,2,2
+
+4. songs
+
+---- sid-->pk                                               sid,sname,cname,rating
+--- song name--->String                                     1,Khalasi,Adigadhvi,5
+---- creator name ---> String                               2,Coca-cola,TonyK,-1
+---- rating ----> Integer                                   3,Espresso,SabrinaCarpenter,5
+
+
+5 playlist
+
+---- pid --->pk                                             pid,pname
+---- playlist name ---> String                              1,my favourite
+                                                            2,worst songs
+
+
+
+there can be one or more songs in the playlist              
+
+
+6 playlist_songs
+
+
+---- playlist_song_relationship_id--->pk                    
+---- pid--->foreignkey(playlist.pid)                       many-to-many
+---- song---->foreignkey(songs.sid)                        1,1,1
+                                                           2,1,3
+                                                           3,2,2
+                                                           4,2,3
+
+
+
+
+
+
+
+
+
+chapters-----topics-----quizzes-----questions
+
+chapters
+topics 
+quizzes
+questions
+
+
+
+
+
+
+
+
+
