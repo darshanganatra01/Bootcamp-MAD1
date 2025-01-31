@@ -104,22 +104,18 @@ there can be one or more songs in the playlist
 
 
 
+Creating ---- Create an instance ---> db.session.add ---> db.session.commit()
 
 
+<User 1> <Song 1> <Albums 1>
+this is an object of class User or table user and it has the primary key 1
+  !
+id=1
+name=Darshan
+password=1234
 
 
-
-
-chapters-----topics-----quizzes-----questions
-
-chapters
-topics 
-quizzes
-questions
-
-
-
-
+Updating---Finding that instance first and then updating that instance
 
 
 
