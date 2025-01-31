@@ -1,4 +1,5 @@
 from flask import Blueprint,Flask,render_template,request,redirect,url_for
+from application.models.model import db
 
 bp = Blueprint('main', __name__)
 
@@ -23,6 +24,22 @@ def login():
 def dashboard(first_name):
     if request.method=='GET':
         return render_template("Dashboard.html",first_name=first_name)
+    
+
+@bp.route('/register',methods=['GET','POST'])
+def register():
+    if request.method=='GET':
+        return render_template("register.html")
+    else:
+        name = request.form.get('name')
+        password = request.form.get("password")
+        print(name,password)
+        
+
+
+
+    
+
     
 
 #methods are the list of methods only allowed methods to the server

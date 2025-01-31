@@ -103,19 +103,30 @@ there can be one or more songs in the playlist
                                                            4,2,3
 
 
+Crud operations 
+Create  ------ add a user in the database
+Read
+Update
+Delete
 
 
 
 
+Creating a database entry 
 
+1) every entry in the database is an instance of the respective table(class)
+    e.g user named darshan 
+    that user row is an instance of user table/User
+    first make and object of class User
 
+    user table ---> name and password
 
-chapters-----topics-----quizzes-----questions
+    new user = User/Songs/Albums/Chapters/Topics(name=Darshan,password=12345)  #create an instance 
+    db.session.add() add to the database
+    db.session.commit() commits and adds the entry
 
-chapters
-topics 
-quizzes
-questions
+    Note : You will have to refer to the table and when creating an object make sure that you provideall
+    necessary items(properties/attributes)
 
 
 

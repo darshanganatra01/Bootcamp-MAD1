@@ -18,3 +18,5 @@ class RoleUsers(db.Model):
     rel_id=db.Column(db.Integer,primary_key=True,autoincrement=True)
     rid=db.Column(db.Integer,db.ForeignKey(Role.role_id),nullable=False)
     uid=db.Column(db.Integer,db.ForeignKey(User.id),nullable=False)
+
+
