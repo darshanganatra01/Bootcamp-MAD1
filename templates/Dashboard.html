@@ -5,9 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>Hello welcome to the dashboard {{userdetails.name}}</body>
+<body>Hello welcome to the dashboard {{userdetails.name}}</body><br>
+
+<br>
+<h1>Songs</h1>
+{%for i in songs%}
+<a href="/songpage/{{i.s_id}}"">{{i.song_name}}<a><br>
+{%endfor%}
+<a href="/add_song/{{userdetails.id}}">Add a song</a><br>
+<br>
+
+
+<h1>Albums</h1><br>
+{%for j in albums%}
+<a href='/songofthatalbems/{{j.alb_id}}'>{{j.album_name}}</a><br>
+{%endfor%}
+<a href="/add_album/{{userdetails.id}}">Add an album</a>
 
 
 
+<br>
 <a href="/update/{{userdetails.id}}">Update</a>
 </html>

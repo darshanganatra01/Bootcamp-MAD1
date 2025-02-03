@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Add song</h2> <br>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                                    <span class="{{category}}">{{ message }}</span>
+                                 <br>
+                        {% endfor %}
+                    {% endif %}
+                    {%endwith%}
+    <form method="post" to="/add_song/{{userid}}">
+
+  Name : <input type="text" name="songname" required><br>
+  <br>
+
+  <select id="select_album" name="select_album">
+    <option value=""> Select Album to insert the song </option>
+    {% for album in all_albums %}
+    <option value="{{album.alb_id}}">{{ album.album_name}}</option>
+    Gujarati 1
+    {% endfor %}
+
+</select>
+
+<a href="/add_album/{{userid}}">Add a new album</a><br>
+
+ 
+  <input type="submit" value="Submit">
+
+</form> 
+</body>
+</html>
