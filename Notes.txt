@@ -24,6 +24,9 @@ save in the database
 render_template ---- render_template is a function using which we can render html templates 
 to the server (i can send html pages to the user form the server)
 
+
+
+
 Templates folder --- in order to give html pages as a response all the pages should be in
 the templates folder
 
@@ -125,10 +128,179 @@ relationships
 
 
 
-Songs will have to belong to one album 
+Songs will have to belong to one album
 
 
+#Order of the session will be 
+
+1) Frontend-Backend validation and stats
+2) Session storage
+3) Flask-Migration
+4) Search
+5) Github
+6) Will give an overview of flask-security 
+
+ 
 
 
+#Flask-Migration
+
+suppose i want to add one table in the models say Genre then i will first type the code for the models.py and then
+i will run the file again but it will not create the database again we will have to upgrade the database 
+
+we use flask-migrate so that we will not have to delete the database file because data will be lost in that 
+
+pip install Flask-Migrate
+
+from flask_migrate import Migrate
+
+wrap the app around the migrate instance 
+
+migrate=Migrate(app,db)
+
+
+## 3 Simple commands 
+ 
+flask db init
+flask db migrate -m "Initial migration"
+flask db upgrade
+
+
+flask db history
+To revert to the previous migration:
+flask db downgrade
+
+
+#Github
+
+We will have to put the project in the github for that first you will need an account 
+
+To push the changes and do everything we will have to have one ssh key 
+
+## Generation of ssh key 
+
+first check if one key is already existing 
+
+ls -al ~/.ssh
+If you see files like id_rsa and id_rsa.pub, an SSH key already exists. You can either use that or generate a new one.
+
+
+lets generate a new one
+
+### ssh-keygen -t rsa -b 4096 -C "darshanganatra01@gmail.com"
+
+Expected Output:
+
+Generating public/private rsa key pair.
+Enter file in which to save the key (/home/user/.ssh/id_rsa):
+
+--Press Enter to accept the default location (/home/user/.ssh/id_rsa).
+
+--After Enter 
+
+Enter passphrase (empty for no passphrase):
+--Press Enter if you don’t want a passphrase.
+
+Enter same passphrase again:
+--Press Enter again if you left it empty.
+
+--After this key will be saved  
+
+### Start agent and add the ssh key -----> eval "$(ssh-agent -s)"
+
+Expected Output:
+
+Agent pid 12345
+
+--Add your key--->ssh-add ~/.ssh/id_rsa
+
+Expected Output:
+
+Identity added: /home/user/.ssh/id_rsa (darshanganatra01@gmail.com)
+
+### Now we will copy and submit this key to github
+
+paste this command and read the key ----> cat ~/.ssh/id_rsa.pub
+
+ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA7kNl3…your-key-contents… darshanganatra01@gmail.com 
+                                      ||
+                      copy the whole key it will look like this
+
+---Copy this entire output and add it to GitHub under Settings → SSH and GPG keys.
+
+
+### Check it 
+
+ssh -T git@github.com
+
+Expected output:
+
+Hi darshanganatra01! You've successfully authenticated, but GitHub does not provide shell access.
+
+
+### Adding the project to github
+
+Create a repository there in the github
+and then navigate to your project
+
+initialize a local git repository ----> git init 
+
+then this command -----> git remote add origin git@github.com:darshanganatra01/<your-repo>.git
+
+then this  ----> git remote -v
+
+Expected output:
+origin  git@github.com:darshanganatra01/your-repo.git (fetch)
+origin  git@github.com:darshanganatra01/your-repo.git (push)
+
+### Final commands
+
+git add .
+git commit -m "Initial commit"
+git branch -M main
+git push -u origin main
+
+#Search 
+
+##Simple basic query 
+
+resultsal = db.session.query(Album).filter(Album.album_name.ilike(f'%{d}%')).all()
+
+
+#Session storage
+
+from flask import session
+
+--remember the secret key is really necessary for you to put 
+
+whenever you want you can use this  ----> session["your key"] = assign it
+
+then then the use is done ------> session.pop('username', None)
+
+
+#Frontend Backend Validation and charts 
+
+Most important parts are these two we will have an overview but how to show it that is upto you 
+
+pip install matplotlib
+
+import matplotlib.pyplot as plt
+
+plt.switch_backend('agg')-----> important when you are generating graphs to let plt use their own backed to generate
+and give the graphs 
+
+fig, ax = plt.subplots()
+        ax.bar(song_names, avg_reviews, color='skyblue', width=0.2)
+        ax.set_xlabel('Songs')
+        ax.set_ylabel('Reviews')
+        ax.set_title('Histogram of Songs and Reviews')
+        ax.set_ylim(0,5)
+
+
+	plot = "static/plt.png"
+	fig.savefig(plot)
+	plt.close(fig)  # Close the figure to release resources
+
+ 
 
 
